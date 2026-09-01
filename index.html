@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For Sudikshya ♡</title>
+  <meta name="description" content="A little birthday corner of the internet, made especially for Sudikshya.">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=Parisienne&display=swap');
+
+    :root {
+      --cream: #fffaf5;
+      --paper: #fffdf9;
+      --rose: #b95d72;
+      --rose-dark: #8f4055;
+      --blush: #f4d9df;
+      --gold: #b38a55;
+      --ink: #34282c;
+      --muted: #786b70;
+      --shadow: 0 25px 70px rgba(82, 47, 57, .12);
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: "DM Sans", sans-serif;
+      overflow-x: hidden;
+    }
+
+    body:before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 20;
+      opacity: .18;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.08'/%3E%3C/svg%3E");
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 600
+    }
+
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      overflow: hidden;
+      padding: 60px 22px;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(244, 217, 223, .75), transparent 32%),
+        radial-gradient(circle at 85% 70%, rgba(239, 226, 205, .8), transparent 30%),
+        linear-gradient(135deg, #fffaf5, #fdf1f3 55%, #fffaf5);
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(2px);
+      opacity: .45
+    }
+
+    .orb.one {
+      width: 280px;
+      height: 280px;
+      background: #f1c9d2;
+      top: -90px;
+      left: -90px
+    }
+
+    .orb.two {
+      width: 210px;
+      height: 210px;
+      background: #eadbbf;
+      right: -55px;
+      bottom: 10%
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 850px
+    }
+
+    .eyebrow {
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      font-size: .72rem;
+      color: var(--rose-dark);
+      margin-bottom: 24px;
+      font-weight: 600;
+    }
+
+    .hero h1 {
+      font-size: clamp(4.5rem, 14vw, 9.5rem);
+      line-height: .82;
+      margin: 0;
+      color: #633b47
+    }
+
+    .script {
+      font-family: Parisienne, cursive;
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      color: var(--rose);
+      display: block;
+      margin-top: 20px
+    }
+
+    .hero p {
+      max-width: 620px;
+      margin: 28px auto 34px;
+      line-height: 1.8;
+      color: var(--muted);
+      font-size: 1.02rem
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 24px;
+      border-radius: 999px;
+      background: #6f3d4c;
+      color: white;
+      text-decoration: none;
+      box-shadow: 0 12px 28px rgba(111, 61, 76, .2);
+      transition: .3s;
+      cursor: pointer;
+      border: 0;
+      font: inherit;
+    }
+
+    .cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 32px rgba(111, 61, 76, .28)
+    }
+
+    .scroll {
+      position: absolute;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: .72rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: #987f86
+    }
+
+    .scroll:after {
+      content: "↓";
+      display: block;
+      font-size: 1.2rem;
+      margin-top: 6px;
+      animation: bounce 1.5s infinite
+    }
+
+    @keyframes bounce {
+      50% {
+        transform: translateY(6px)
+      }
+    }
+
+    .countdown-wrap {
+      margin: 32px auto 0
+    }
+
+    .countdown-label {
+      font-size: .7rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: #8f6872;
+      margin-bottom: 12px
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap
+    }
+
+    .countdown div {
+      min-width: 72px;
+      padding: 10px 8px;
+      border: 1px solid rgba(143, 64, 85, .14);
+      background: rgba(255, 255, 255, .58);
+      border-radius: 14px
+    }
+
+    .countdown strong {
+      display: block;
+      font: 600 1.5rem "Cormorant Garamond";
+      color: #6f3d4c
+    }
+
+    .countdown span {
+      display: block;
+      font-size: .58rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: #8b777d;
+      margin-top: 2px
+    }
+
+    section {
+      padding: 110px 22px
+    }
+
+    .wrap {
+      max-width: 1080px;
+      margin: auto
+    }
+
+    .section-kicker {
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: .25em;
+      font-size: .7rem;
+      color: var(--rose);
+      font-weight: 600
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: clamp(2.8rem, 6vw, 4.6rem);
+      margin: 12px 0 18px;
+      color: #5b3842
+    }
+
+    .section-sub {
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto 55px;
+      color: var(--muted);
+      line-height: 1.8
+    }
+
+    .intro-card {
+      max-width: 860px;
+      margin: auto;
+      background: rgba(255, 255, 255, .75);
+      border: 1px solid rgba(179, 138, 85, .18);
+      padding: clamp(30px, 6vw, 70px);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+
+    .intro-card:before,
+    .intro-card:after {
+      content: "“";
+      position: absolute;
+      font: 6rem/1 "Cormorant Garamond";
+      color: #ead1d7
+    }
+
+    .intro-card:before {
+      left: 25px;
+      top: 18px
+    }
+
+    .intro-card:after {
+      content: "”";
+      right: 25px;
+      bottom: -15px
+    }
+
+    .intro-card p {
+      font: 500 clamp(1.3rem, 3vw, 2rem)/1.55 "Cormorant Garamond";
+      text-align: center;
+      margin: 0;
+      color: #4b363c
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 18px
+    }
+
+    .photo {
+      overflow: hidden;
+      border-radius: 22px;
+      background: #eee;
+      box-shadow: 0 15px 45px rgba(50, 30, 35, .1);
+      position: relative;
+      cursor: pointer;
+    }
+
+    .photo img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      transition: transform .7s ease
+    }
+
+    .photo:hover img {
+      transform: scale(1.045)
+    }
+
+    .photo:nth-child(1) {
+      grid-column: span 5;
+      height: 520px
+    }
+
+    .photo:nth-child(2) {
+      grid-column: span 7;
+      height: 520px
+    }
+
+    .photo:nth-child(3) {
+      grid-column: span 7;
+      height: 650px
+    }
+
+    .photo:nth-child(4) {
+      grid-column: span 5;
+      height: 650px
+    }
+
+    .photo .caption {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 16px;
+      padding: 12px 15px;
+      border-radius: 14px;
+      background: rgba(255, 250, 245, .82);
+      backdrop-filter: blur(8px);
+      font-size: .78rem;
+      color: #5a444b;
+    }
+
+    .notes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px
+    }
+
+    .note {
+      background: #fffdf9;
+      border: 1px solid #eadfe0;
+      border-radius: 24px;
+      padding: 34px 28px;
+      box-shadow: 0 14px 45px rgba(65, 40, 45, .07);
+      transition: .35s;
+    }
+
+    .note:hover {
+      transform: translateY(-7px)
+    }
+
+    .note .icon {
+      font-size: 1.7rem
+    }
+
+    .note h3 {
+      font-size: 2rem;
+      margin: 16px 0 8px;
+      color: #6d3e4b
+    }
+
+    .note p {
+      line-height: 1.75;
+      color: var(--muted);
+      margin: 0
+    }
+
+    .letter-wrap {
+      max-width: 820px;
+      margin: auto
+    }
+
+    .letter {
+      background: #fffdf9;
+      padding: clamp(34px, 7vw, 75px);
+      border-radius: 4px;
+      box-shadow: var(--shadow);
+      position: relative;
+      border: 1px solid #eee1d6;
+      transform: rotate(-.35deg);
+    }
+
+    .letter:before {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border: 1px solid #ead9c9;
+      pointer-events: none
+    }
+
+    .letter-inner {
+      position: relative;
+      z-index: 1
+    }
+
+    .letter .dear {
+      font-family: Parisienne, cursive;
+      font-size: 2.7rem;
+      color: var(--rose);
+      margin-bottom: 25px
+    }
+
+    .letter p {
+      font: 500 1.28rem/1.8 "Cormorant Garamond";
+      color: #514044
+    }
+
+    .signature {
+      font-family: Parisienne, cursive;
+      font-size: 2.6rem;
+      color: #70404e;
+      text-align: right;
+      margin-top: 25px
+    }
+
+    .final {
+      min-height: 75vh;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      background: linear-gradient(180deg, #fffaf5, #f6e1e5 55%, #ead0d7);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .final h2 {
+      font-size: clamp(3.5rem, 9vw, 7rem);
+      line-height: .9;
+      margin: 0;
+      color: #623b46
+    }
+
+    .final p {
+      font: 1.8rem "Cormorant Garamond";
+      max-width: 650px;
+      margin: 28px auto;
+      color: #634e54;
+      line-height: 1.5
+    }
+
+    .heart {
+      width: 90px;
+      height: 90px;
+      margin: 30px auto;
+      display: grid;
+      place-items: center;
+      font-size: 2.3rem;
+      background: rgba(255, 255, 255, .55);
+      border: 1px solid rgba(143, 64, 85, .12);
+      border-radius: 50%;
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      50% {
+        transform: scale(1.08)
+      }
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: #8c7a80;
+      font-size: .75rem;
+      letter-spacing: .1em;
+      text-transform: uppercase
+    }
+
+    #petals {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 15;
+      overflow: hidden
+    }
+
+    .petal {
+      position: absolute;
+      top: -30px;
+      font-size: 18px;
+      animation: fall linear forwards;
+      opacity: .7
+    }
+
+    @keyframes fall {
+      to {
+        transform: translate3d(var(--x), 110vh, 0) rotate(360deg);
+        opacity: 0
+      }
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(40, 24, 29, .82);
+      backdrop-filter: blur(10px);
+      display: none;
+      place-items: center;
+      z-index: 50;
+      padding: 20px;
+    }
+
+    .modal.open {
+      display: grid
+    }
+
+    .modal img {
+      max-width: min(92vw, 900px);
+      max-height: 88vh;
+      object-fit: contain;
+      border-radius: 18px;
+      box-shadow: 0 30px 80px #0008
+    }
+
+    .close {
+      position: fixed;
+      top: 20px;
+      right: 25px;
+      color: white;
+      background: none;
+      border: 0;
+      font-size: 2rem;
+      cursor: pointer
+    }
+
+    @media(max-width:760px) {
+      section {
+        padding: 80px 18px
+      }
+
+      .gallery {
+        display: grid;
+        grid-template-columns: 1fr 1fr
+      }
+
+      .photo:nth-child(n) {
+        grid-column: span 1;
+        height: 430px
+      }
+
+      .photo:nth-child(3),
+      .photo:nth-child(4) {
+        height: 500px
+      }
+
+      .notes {
+        grid-template-columns: 1fr
+      }
+
+      .hero h1 {
+        font-size: 4.5rem
+      }
+    }
+
+    @media(max-width:500px) {
+      .gallery {
+        grid-template-columns: 1fr
+      }
+
+      .photo:nth-child(n) {
+        grid-column: span 1;
+        height: 500px
+      }
+
+      .photo:nth-child(3),
+      .photo:nth-child(4) {
+        height: 580px
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="petals"></div>
+
+  <header class="hero">
+    <div class="orb one"></div>
+    <div class="orb two"></div>
+    <div class="hero-content">
+      <div class="eyebrow">A little birthday surprise</div>
+      <h1>Sudikshya</h1>
+      <span class="script">this little page is yours ♡</span>
+      <p>
+        Some people deserve more than a simple “Happy Birthday.”
+        So I made you a tiny corner of the internet filled with a few photos,
+        a few words, and a lot of thought. And because September 3rd is your day,
+        this little corner is here to celebrate you.
+      </p>
+      <a class="cta" href="#letter">Open your letter <span>♡</span></a>
+      <div class="countdown-wrap">
+        <div class="countdown-label">Counting down to September 3 ♡</div>
+        <div class="countdown" id="countdown">
+          <div><strong id="days">--</strong><span>Days</span></div>
+          <div><strong id="hours">--</strong><span>Hours</span></div>
+          <div><strong id="minutes">--</strong><span>Minutes</span></div>
+          <div><strong id="seconds">--</strong><span>Seconds</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll">scroll gently</div>
+  </header>
+
+  <section id="gallery">
+    <div class="wrap">
+      <div class="section-kicker">A few favorite views</div>
+      <h2 class="section-title">You, being you.</h2>
+      <p class="section-sub">Kati cute Dekheko k 🥺</p>
+      <div class="gallery">
+        <div class="photo"><img src="images/sudikshya-1.jpg" alt="Sudikshya in a red traditional outfit">
+          <div class="caption">A little red, a lot of grace.</div>
+        </div>
+        <div class="photo"><img src="images/sudikshya-2.jpg" alt="Sudikshya outdoors in a blue outfit">
+          <div class="caption">That smile deserves its own frame.</div>
+        </div>
+        <div class="photo"><img src="images/sudikshya-3.jpg" alt="Sudikshya in a silver-blue outfit">
+          <div class="caption">Soft, bright, and effortlessly lovely.</div>
+        </div>
+        <div class="photo"><img src="images/sudikshya-4.jpg" alt="Sudikshya taking a mirror photo">
+          <div class="caption">And then there are the little moments.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-kicker">Just a few things</div>
+      <h2 class="section-title">What makes you, you.</h2>
+      <p class="section-sub">Not a checklist. Just a few things that stand out and make you special.</p>
+      <div class="notes">
+        <article class="note">
+          <div class="icon">♡</div>
+          <h3>Your caring heart</h3>
+          <p>You have a way of caring about people that feels genuine and warm. That kindness is one of the most
+            beautiful things about you.</p>
+        </article>
+        <article class="note">
+          <div class="icon">✦</div>
+          <h3>Your maturity</h3>
+          <p>There is something calm and thoughtful about the way you carry yourself. You have a beautiful sense of
+            maturity that makes you easy to admire.</p>
+        </article>
+        <article class="note">
+          <div class="icon">❀</div>
+          <h3>Your beauty</h3>
+          <p>Beautiful is an easy word to use for you but your eyes, your smile, and the way you carry yourself make the
+            word feel especially fitting.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="letter">
+    <div class="wrap">
+      <div class="section-kicker">Open when you're ready</div>
+      <h2 class="section-title">A little birthday letter</h2>
+      <div class="letter-wrap">
+        <div class="letter">
+          <div class="letter-inner">
+            <div class="dear">Dear Sudikshya,</div>
+            <p>
+              Happy Birthday to a genuinely lovely person. ♡
+            </p>
+            <p>
+              We haven't met in person yet, and somehow that makes this little
+              birthday page feel even more special. Until the day our paths
+              properly meet, I wanted to give you something you could keep a
+              small reminder that you are appreciated, thought of, and celebrated.
+            </p>
+            <p>
+              You are cute, wonderfully innocent, caring, mature, and genuinely beautiful.
+              And yes, you have the kind of beautiful eyes that are impossible not
+              to notice. But what makes you even more special is the warmth behind
+              all of those qualities the person you are when nobody is trying to
+              impress anyone.
+            </p>
+            <p>
+              September 3 is your day, and I hope this new year of your life brings you
+              peaceful mornings, ridiculous amounts of laughter, beautiful surprises,
+              big dreams coming true, and people who make you feel as special as you are.
+            </p>
+            <p>
+              And for today, I hope this tiny corner of the internet makes you
+              smile even if just for a minute.
+            </p>
+            <div class="signature">Happy Birthday, Sudikshya ♡</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final">
+    <div>
+      <div class="section-kicker">One last thing</div>
+      <h2>Today is your day ,Cutie </h2>
+
+      <div class="heart">♡</div>
+      <button class="cta" id="surpriseBtn">One tiny surprise ✨</button>
+    </div>
+  </section>
+
+  <footer>Made with Love, just for Sudikshya · ♡</footer>
+
+  <div class="modal" id="modal">
+    <button class="close" aria-label="Close">×</button>
+    <img src="images/sudikshya-3.jpg" alt="Sudikshya">
+  </div>
+
+  <script>
+    const petals = document.getElementById('petals');
+    const symbols = ['♡', '✦', '❀', '·'];
+    function makePetal() {
+      const p = document.createElement('span');
+      p.className = 'petal';
+      p.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+      p.style.left = Math.random() * 100 + 'vw';
+      p.style.setProperty('--x', (Math.random() * 240 - 120) + 'px');
+      p.style.animationDuration = (5 + Math.random() * 6) + 's';
+      p.style.fontSize = (12 + Math.random() * 15) + 'px';
+      petals.appendChild(p);
+      setTimeout(() => p.remove(), 12000);
+    }
+    setInterval(makePetal, 650);
+
+    document.querySelectorAll('.photo').forEach(card => {
+      card.addEventListener('click', () => {
+        document.getElementById('modal').classList.add('open');
+        document.querySelector('#modal img').src = card.querySelector('img').src;
+      });
+    });
+    document.querySelector('.close').onclick = () => document.getElementById('modal').classList.remove('open');
+    document.getElementById('modal').addEventListener('click', e => {
+      if (e.target.id === 'modal') e.currentTarget.classList.remove('open');
+    });
+    document.getElementById('surpriseBtn').addEventListener('click', () => {
+      for (let i = 0; i < 28; i++) setTimeout(makePetal, i * 55);
+      alert("Happy Birthday, Sudikshya! ♡\n\nI hope today is as lovely as you are.");
+    });
+
+    const target = new Date('2026-09-03T00:00:00');
+    function updateCountdown() {
+      const now = new Date();
+      let diff = target - now;
+      if (diff <= 0) {
+        document.getElementById('countdown').innerHTML =
+          '<div style="padding:12px 22px"><strong style="font-size:1.35rem">Happy Birthday, Sudikshya! ♡</strong></div>';
+        return;
+      }
+      const days = Math.floor(diff / 86400000);
+      diff %= 86400000;
+      const hours = Math.floor(diff / 3600000);
+      diff %= 3600000;
+      const minutes = Math.floor(diff / 60000);
+      const seconds = Math.floor((diff % 60000) / 1000);
+      document.getElementById('days').textContent = String(days).padStart(2, '0');
+      document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+      document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+      document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+
+</html>
