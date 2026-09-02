@@ -158,11 +158,11 @@ footer{text-align:center;padding:30px;color:#8c7a80;font-size:.75rem;letter-spac
 </style>
 
 <style>
-.birthday-intro{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 35%,rgba(255,245,247,.98),rgba(247,225,230,.98));transition:opacity .8s ease,visibility .8s ease;overflow:hidden}
-.birthday-intro.hidden{opacity:0;visibility:hidden;pointer-events:none}
-.intro-card{position:relative;width:min(90%,520px);padding:48px 30px;text-align:center;background:rgba(255,255,255,.78);border:1px solid rgba(255,255,255,.9);border-radius:28px;box-shadow:0 25px 80px rgba(100,55,65,.18);backdrop-filter:blur(12px);animation:introFloat 3.5s ease-in-out infinite}
+.birthday-intro{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 35%,rgba(255,245,247,.98),rgba(247,225,230,.98));transition:opacity .9s ease,visibility .9s ease,transform .9s ease,filter .9s ease;overflow:hidden}
+.birthday-intro.hidden{opacity:0;visibility:hidden;pointer-events:none;transform:scale(1.04);filter:blur(6px)}
+.welcome-card{position:relative;width:min(90%,520px);padding:48px 30px;text-align:center;background:rgba(255,255,255,.78);border:1px solid rgba(255,255,255,.9);border-radius:28px;box-shadow:0 25px 80px rgba(100,55,65,.18);backdrop-filter:blur(12px);animation:introFloat 3.5s ease-in-out infinite;z-index:2}
 .intro-emoji{font-size:52px;margin-bottom:12px}.intro-kicker{letter-spacing:.18em;text-transform:uppercase;font-size:12px;opacity:.65}
-.intro-card h1{font-size:clamp(38px,8vw,62px);margin:10px 0 4px}.intro-date{font-size:18px;letter-spacing:.12em;margin:0 0 18px;opacity:.7}
+.welcome-card h1{font-size:clamp(38px,8vw,62px);margin:10px 0 4px}.intro-date{font-size:18px;letter-spacing:.12em;margin:0 0 18px;opacity:.7}
 .intro-text{font-size:16px;line-height:1.6;margin:0 auto 26px;max-width:350px}
 .begin-button{border:0;border-radius:999px;padding:15px 28px;font-size:16px;font-weight:700;cursor:pointer;box-shadow:0 10px 30px rgba(100,55,65,.2);transition:transform .2s ease,box-shadow .2s ease}
 .begin-button:hover{transform:translateY(-2px);box-shadow:0 14px 35px rgba(100,55,65,.25)}
@@ -170,6 +170,56 @@ footer{text-align:center;padding:30px;color:#8c7a80;font-size:.75rem;letter-spac
 .music-button.visible{opacity:1;pointer-events:auto}.music-button:hover{transform:scale(1.06)}
 .intro-glow{position:absolute;width:70vw;height:70vw;max-width:700px;max-height:700px;border-radius:50%;background:radial-gradient(circle,rgba(255,190,205,.22),transparent 68%);animation:glow 5s ease-in-out infinite}
 @keyframes introFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}@keyframes glow{0%,100%{transform:scale(.95);opacity:.7}50%{transform:scale(1.05);opacity:1}}
+
+/* ---- intro decor: balloons, confetti, sparkles, blooms ---- */
+.intro-decor{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1}
+
+.balloon{position:absolute;bottom:-120px;font-size:38px;animation:balloonRise linear forwards;filter:drop-shadow(0 10px 15px rgba(100,55,65,.15))}
+@keyframes balloonRise{
+  0%{transform:translate3d(0,0,0) rotate(0deg);opacity:0}
+  8%{opacity:1}
+  100%{transform:translate3d(var(--drift),-115vh,0) rotate(var(--sway));opacity:0}
+}
+
+.confetto{position:absolute;top:-20px;width:8px;height:14px;opacity:.9;animation:confettiFall linear forwards}
+@keyframes confettiFall{
+  0%{transform:translate3d(0,0,0) rotate(0deg);opacity:1}
+  100%{transform:translate3d(var(--drift),120vh,0) rotate(var(--spin));opacity:.5}
+}
+
+.sparkle{position:absolute;font-size:14px;animation:sparkleTwinkle ease-in-out infinite}
+@keyframes sparkleTwinkle{0%,100%{opacity:0;transform:scale(.5)}50%{opacity:1;transform:scale(1.15)}}
+
+.bloom{position:absolute;font-size:20px;animation:bloomFall linear forwards;opacity:.85}
+@keyframes bloomFall{
+  0%{transform:translate3d(0,-20px,0) rotate(0deg);opacity:0}
+  10%{opacity:.85}
+  100%{transform:translate3d(var(--drift),110vh,0) rotate(var(--spin));opacity:0}
+}
+
+.birthday-intro.launch .welcome-card{animation:cardPop .55s ease}
+@keyframes cardPop{0%{transform:scale(1)}45%{transform:scale(1.045)}100%{transform:scale(1)}}
+
+/* ---- surprise reveal (replaces alert) ---- */
+.surprise-overlay{
+  position:fixed;inset:0;z-index:9997;display:none;place-items:center;padding:20px;
+  background:rgba(40,24,29,.55);backdrop-filter:blur(10px);
+  opacity:0;transition:opacity .4s ease;
+}
+.surprise-overlay.open{display:grid;opacity:1}
+.surprise-card{
+  position:relative;width:min(92%,480px);padding:44px 32px;text-align:center;border-radius:26px;
+  background:rgba(255,253,249,.96);border:1px solid rgba(179,138,85,.2);box-shadow:0 30px 80px rgba(82,47,57,.28);
+  transform:scale(.85) translateY(20px);opacity:0;transition:transform .5s cubic-bezier(.2,.9,.3,1.3),opacity .4s ease;
+}
+.surprise-overlay.open .surprise-card{transform:scale(1) translateY(0);opacity:1}
+.surprise-heart{font-size:40px;margin-bottom:14px;animation:pulse 1.6s infinite}
+.surprise-card h3{font-family:Parisienne,cursive;font-size:2.4rem;color:var(--rose);margin:0 0 14px}
+.surprise-card p{font:500 1.15rem/1.7 "Cormorant Garamond";color:#514044;margin:0 0 26px}
+.surprise-close{border:0;border-radius:999px;padding:12px 26px;font:inherit;font-weight:600;cursor:pointer;
+  background:#6f3d4c;color:#fff;box-shadow:0 10px 26px rgba(111,61,76,.22);transition:.25s}
+.surprise-close:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(111,61,76,.28)}
+.surprise-decor{position:absolute;inset:0;overflow:hidden;pointer-events:none;border-radius:26px}
 </style>
 
 </head>
@@ -177,7 +227,13 @@ footer{text-align:center;padding:30px;color:#8c7a80;font-size:.75rem;letter-spac
 
 <div id="birthdayIntro" class="birthday-intro">
   <div class="intro-glow"></div>
-  <div class="intro-card">
+  <div class="intro-decor">
+    <div id="introBalloons"></div>
+    <div id="introConfetti"></div>
+    <div id="introSparkles"></div>
+    <div id="introBlooms"></div>
+  </div>
+  <div class="welcome-card">
     <div class="intro-emoji">🎁</div>
     <p class="intro-kicker">A little birthday surprise</p>
     <h1>For Sudikshya ✨</h1>
@@ -305,6 +361,17 @@ footer{text-align:center;padding:30px;color:#8c7a80;font-size:.75rem;letter-spac
   <img src="images/sudikshya-3.jpg" alt="Sudikshya">
 </div>
 
+<!-- soft on-page surprise reveal, replaces the old alert() -->
+<div class="surprise-overlay" id="surpriseOverlay">
+  <div class="surprise-card">
+    <div class="surprise-decor" id="surpriseDecor"></div>
+    <div class="surprise-heart">♡</div>
+    <h3>Happy Birthday, Sudikshya</h3>
+    <p>I hope today is as lovely as you are — full of small joys, warm moments, and a little extra sparkle, just for you.</p>
+    <button class="surprise-close" id="surpriseClose">Close with love ♡</button>
+  </div>
+</div>
+
 <script>
 const petals = document.getElementById('petals');
 const symbols = ['♡','✦','❀','·'];
@@ -331,10 +398,43 @@ document.querySelector('.close').onclick=()=>document.getElementById('modal').cl
 document.getElementById('modal').addEventListener('click',e=>{
   if(e.target.id==='modal') e.currentTarget.classList.remove('open');
 });
-document.getElementById('surpriseBtn').addEventListener('click',()=>{
-  for(let i=0;i<28;i++) setTimeout(makePetal,i*55);
-  alert("Happy Birthday, Sudikshya! ♡\n\nI hope today is as lovely as you are.");
-});
+
+/* ---- surprise reveal logic (replaces alert) ---- */
+(function(){
+  const overlay=document.getElementById('surpriseOverlay');
+  const closeBtn=document.getElementById('surpriseClose');
+  const decor=document.getElementById('surpriseDecor');
+  const btn=document.getElementById('surpriseBtn');
+
+  function burstConfetti(){
+    const colors=['#e8a5b3','#f1c9d2','#b38a55','#eadbbf','#8f4055'];
+    for(let i=0;i<26;i++){
+      setTimeout(()=>{
+        const c=document.createElement('span');
+        c.className='confetto';
+        c.style.left=Math.random()*100+'%';
+        c.style.background=colors[Math.floor(Math.random()*colors.length)];
+        c.style.setProperty('--drift',(Math.random()*140-70)+'px');
+        c.style.setProperty('--spin',(Math.random()*540-270)+'deg');
+        c.style.animationDuration=(2.5+Math.random()*2)+'s';
+        c.style.borderRadius=Math.random()>.5?'50%':'2px';
+        decor.appendChild(c);
+        setTimeout(()=>c.remove(),5000);
+      },i*40);
+    }
+  }
+
+  btn.addEventListener('click',()=>{
+    for(let i=0;i<20;i++) setTimeout(makePetal,i*55);
+    overlay.classList.add('open');
+    burstConfetti();
+  });
+
+  closeBtn.addEventListener('click',()=>overlay.classList.remove('open'));
+  overlay.addEventListener('click',e=>{
+    if(e.target===overlay) overlay.classList.remove('open');
+  });
+})();
 
 const target = new Date('2026-09-03T00:00:00');
 function updateCountdown(){
@@ -360,14 +460,96 @@ updateCountdown();
 setInterval(updateCountdown,1000);
 </script>
 
+<!-- animated intro: balloons, confetti, sparkles, blooms -->
+<script>
+(function(){
+  const balloonsWrap=document.getElementById('introBalloons');
+  const confettiWrap=document.getElementById('introConfetti');
+  const sparkleWrap=document.getElementById('introSparkles');
+  const bloomWrap=document.getElementById('introBlooms');
+
+  const balloonEmojis=['🎈','🎈','🎈','🎀'];
+  const bloomEmojis=['🌸','🌷','🌼','✿'];
+  const confettiColors=['#e8a5b3','#f1c9d2','#b38a55','#eadbbf','#8f4055'];
+
+  function makeBalloon(){
+    const b=document.createElement('span');
+    b.className='balloon';
+    b.textContent=balloonEmojis[Math.floor(Math.random()*balloonEmojis.length)];
+    b.style.left=Math.random()*100+'%';
+    b.style.setProperty('--drift',(Math.random()*160-80)+'px');
+    b.style.setProperty('--sway',(Math.random()*30-15)+'deg');
+    b.style.animationDuration=(7+Math.random()*5)+'s';
+    b.style.fontSize=(28+Math.random()*22)+'px';
+    balloonsWrap.appendChild(b);
+    setTimeout(()=>b.remove(),13000);
+  }
+
+  function makeConfetti(){
+    const c=document.createElement('span');
+    c.className='confetto';
+    c.style.left=Math.random()*100+'%';
+    c.style.background=confettiColors[Math.floor(Math.random()*confettiColors.length)];
+    c.style.setProperty('--drift',(Math.random()*140-70)+'px');
+    c.style.setProperty('--spin',(Math.random()*540-270)+'deg');
+    c.style.animationDuration=(3.5+Math.random()*3)+'s';
+    c.style.borderRadius=Math.random()>.5?'50%':'2px';
+    confettiWrap.appendChild(c);
+    setTimeout(()=>c.remove(),7000);
+  }
+
+  function makeSparkle(){
+    const s=document.createElement('span');
+    s.className='sparkle';
+    s.textContent='✨';
+    s.style.left=Math.random()*100+'%';
+    s.style.top=Math.random()*100+'%';
+    s.style.animationDuration=(1.6+Math.random()*1.8)+'s';
+    sparkleWrap.appendChild(s);
+    setTimeout(()=>s.remove(),4500);
+  }
+
+  function makeBloom(){
+    const f=document.createElement('span');
+    f.className='bloom';
+    f.textContent=bloomEmojis[Math.floor(Math.random()*bloomEmojis.length)];
+    f.style.left=Math.random()*100+'%';
+    f.style.setProperty('--drift',(Math.random()*100-50)+'px');
+    f.style.setProperty('--spin',(Math.random()*260-130)+'deg');
+    f.style.animationDuration=(6+Math.random()*4)+'s';
+    bloomWrap.appendChild(f);
+    setTimeout(()=>f.remove(),11000);
+  }
+
+  const timers=[
+    setInterval(makeBalloon,650),
+    setInterval(makeConfetti,180),
+    setInterval(makeSparkle,320),
+    setInterval(makeBloom,500)
+  ];
+
+  for(let i=0;i<10;i++) setTimeout(makeSparkle,i*120);
+  for(let i=0;i<6;i++) setTimeout(makeBalloon,i*260);
+  for(let i=0;i<8;i++) setTimeout(makeBloom,i*200);
+
+  window.__introTimers=timers;
+})();
+</script>
+
 <script>
 document.addEventListener("DOMContentLoaded",()=>{
  const intro=document.getElementById("birthdayIntro"),begin=document.getElementById("beginBirthday");
  const music=document.getElementById("birthdayMusic"),button=document.getElementById("musicButton");
  begin.addEventListener("click",async()=>{
    try{await music.play()}catch(e){}
-   intro.classList.add("hidden");button.classList.add("visible");button.textContent="⏸️";
-   document.body.classList.add("birthday-started");
+   intro.classList.add("launch");
+   setTimeout(()=>{
+     intro.classList.add("hidden");
+     button.classList.add("visible");
+     button.textContent="⏸️";
+     document.body.classList.add("birthday-started");
+     (window.__introTimers||[]).forEach(clearInterval);
+   },550);
  });
  button.addEventListener("click",()=>{
    if(music.paused){music.play();button.textContent="⏸️"}else{music.pause();button.textContent="🎵"}
